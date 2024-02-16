@@ -9,7 +9,6 @@ void Framework::Init(int width, int height, const std::string& name)
     windowSize.y = height;
 
     window.create(sf::VideoMode(windowSize.x, windowSize.y), name);
-
     SCENE_MGR.Init();
 }
 
