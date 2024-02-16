@@ -9,8 +9,8 @@
 #include "EffectLog.h"
 #include "Player.h"
 
-SCENE_GAME::SCENE_GAME(SceneIds id)
-	: Scene(id)
+SCENE_GAME::SCENE_GAME(SceneIds id, GameMode gameMode)
+	: Scene(id), currGameMode(gameMode)
 {
 }
 
@@ -56,7 +56,7 @@ void SCENE_GAME::Init()
 	tree->SetPosition({ 1920.f / 2, 900.f });
 	AddGo(tree);
 
-	player = new Player("Player");
+	player = new Player("Player", currGameMode, this);
 	AddGo(player);
 
 	BgBeeGo* beeGo = new BgBeeGo("Bee");
@@ -114,11 +114,12 @@ void SCENE_GAME::Enter()
 
 void SCENE_GAME::Exit()
 {
-	FRAMEWORK.SetTimeScale(1.f);
+	timeScale = 1.f;
 }
 
 void SCENE_GAME::Update(float dt)
 {
+	dt *= timeScale;
 	Scene::Update(dt);
 
 	switch (currStatus)
@@ -184,6 +185,10 @@ void SCENE_GAME::UpdateGameOver(float dt)
 {
 	if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
 	{
+		for (auto& i : gameObjects)
+		{
+			i->Reset();
+		}
 		SetStatus(Status::Game);
 	}
 }
@@ -204,7 +209,10 @@ void SCENE_GAME::Draw(sf::RenderWindow& window)
 
 void SCENE_GAME::OnChop()
 {
-	// 점수 갱신
+	uiScore->AddScore(10);
+	timer += 0.2f;
+	if (timer > duration)
+		timer = duration;
 }
 
 void SCENE_GAME::OnPlayerDie()
@@ -222,7 +230,7 @@ void SCENE_GAME::SetStatus(Status newStatus)
 	case Status::Awake:
 		timer = duration;
 		uiTimeBar->SetValue(timer / duration);
-		FRAMEWORK.SetTimeScale(0.f);
+		timeScale = 0.f;
 		uiMsg->SetActive(true);
 		uiMsg->SetString("PRESS ENTER TO START!");
 		break;
@@ -234,17 +242,17 @@ void SCENE_GAME::SetStatus(Status newStatus)
 			player->Reset();
 			tree->Reset();
 		}
-		FRAMEWORK.SetTimeScale(1.f);
+		timeScale = 1.f;
 		uiMsg->SetActive(false);
 		uiMsg->SetString("");
 		break;
 	case Status::GameOver:
-		FRAMEWORK.SetTimeScale(0.f);
+		timeScale = 0.f;
 		uiMsg->SetActive(true);
-		uiMsg->SetString("GAME OVER! PRESS ENTER TO RESTART!");
+		uiMsg->SetString("\t\t\t\tSCORE : " + std::to_string(uiScore->GetScore())+ "\nGAME OVER! PRESS ENTER TO RESTART!");
 		break;
 	case Status::Pause:
-		FRAMEWORK.SetTimeScale(0.f);
+		timeScale = 0.f;
 		uiMsg->SetActive(true);
 		uiMsg->SetString("PRESS ESC TO RESUME!");
 		break;

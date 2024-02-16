@@ -1,10 +1,11 @@
 #include "pch.h"
 #include "Player.h"
 #include "SceneGame.h"
+#include "SceneGameMulti.h"
 #include "Tree.h"
 
-Player::Player(const std::string& name)
-	: SpriteGo(name)
+Player::Player(const std::string& name, SCENE_GAME::GameMode gameMode, SCENE_GAME* sceneGame)
+	: SpriteGo(name) , gameMode(gameMode), sceneGame(sceneGame)
 {
 }
 
@@ -21,6 +22,7 @@ void Player::OnDie()
 	isChopping = false;
 
 	SetTexture(texIdRip);
+	SetOrigin(Origins::BC);
 	SetScale(scale);
 }
 
@@ -103,6 +105,7 @@ void Player::Init()
 
 	sfxChop.setBuffer(RES_MGR_SOUND_BUFFER.Get("sound/chop.wav"));
 	sfxDeath.setBuffer(RES_MGR_SOUND_BUFFER.Get("sound/death.wav"));
+
 }
 
 void Player::Release()
@@ -115,10 +118,22 @@ void Player::Reset()
 	SpriteGo::Reset();
 
 	SetTexture(texIdPlayer);
+	SetOrigin(Origins::BC);
 	isAlive = true;
 	isChopping = false;
 
-	sceneGame = dynamic_cast<SCENE_GAME*>(SCENE_MGR.GetCurrentScene());
+	if (gameMode == SCENE_GAME::GameMode::Single)
+	{
+		sceneGame = dynamic_cast<SCENE_GAME*>(SCENE_MGR.GetCurrentScene());
+	}
+	else if (gameMode == SCENE_GAME::GameMode::Player1)
+	{
+		sceneGame = dynamic_cast<SCENE_GAME*>(dynamic_cast<SceneGameMulti*>(SCENE_MGR.GetCurrentScene())->GetScenePlayer1());
+	}
+	else
+	{
+		sceneGame = dynamic_cast<SCENE_GAME*>(dynamic_cast<SceneGameMulti*>(SCENE_MGR.GetCurrentScene())->GetScenePlayer2());
+	}
 	tree = dynamic_cast<Tree*>(sceneGame->FindGo("Tree"));
 
 	SetSide(Sides::RIGHT);
@@ -131,11 +146,11 @@ void Player::Update(float dt)
 
 	Sides inputSide = Sides::NONE;
 
-	if (InputMgr::GetKeyDown(sf::Keyboard::Left))
+	if (InputMgr::GetKeyDown(KeyLeft()))
 	{
 		inputSide = Sides::LEFT;
 	}
-	if (InputMgr::GetKeyDown(sf::Keyboard::Right))
+	if (InputMgr::GetKeyDown(KeyRight()))
 	{
 		inputSide = Sides::RIGHT;
 	}
@@ -161,7 +176,7 @@ void Player::Update(float dt)
 		}
 	}
 
-	if (InputMgr::GetKeyUp(sf::Keyboard::Left) || InputMgr::GetKeyUp(sf::Keyboard::Left))
+	if (InputMgr::GetKeyUp(KeyLeft()) || InputMgr::GetKeyUp(KeyRight()))
 	{
 		isChopping = false;
 	}
@@ -174,4 +189,14 @@ void Player::Draw(sf::RenderWindow& window)
 	{
 		window.draw(spriteAxe);
 	}
+}
+
+sf::Keyboard::Key Player::KeyLeft() const
+{
+	return gameMode == SCENE_GAME::GameMode::Player1 ? sf::Keyboard::A : sf::Keyboard::Left;
+}
+
+sf::Keyboard::Key Player::KeyRight() const
+{
+	return gameMode == SCENE_GAME::GameMode::Player1 ? sf::Keyboard::D : sf::Keyboard::Right;
 }

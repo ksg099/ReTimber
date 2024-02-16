@@ -18,7 +18,7 @@ void Framework::Do()
     while (window.isOpen())
     {
         deltaTime = realDeltaTime = clock.restart();
-        deltaTime *= timeScale;
+        //deltaTime *= timeScale;
 
         time += deltaTime;
         realTime += realDeltaTime;

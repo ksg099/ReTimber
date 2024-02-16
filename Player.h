@@ -1,7 +1,7 @@
 #pragma once
 #include "SpriteGo.h"
+#include "SceneGame.h"
 
-class SCENE_GAME;
 class Tree;
 
 class Player : public SpriteGo
@@ -22,10 +22,11 @@ protected:
 	bool isChopping = true;
 
 	SCENE_GAME* sceneGame;
+	SCENE_GAME::GameMode gameMode;
 	Tree* tree;
 
 public:
-	Player(const std::string& name = "");
+	Player(const std::string& name, SCENE_GAME::GameMode gameMode, SCENE_GAME* sceneGame);
 	virtual ~Player() = default;
 
 	std::string texIdPlayer = "graphics/player.png";
@@ -47,5 +48,8 @@ public:
 
 	virtual void Update(float dt);
 	virtual void Draw(sf::RenderWindow& window);
+
+	sf::Keyboard::Key KeyLeft() const;
+	sf::Keyboard::Key KeyRight() const;
 };
 

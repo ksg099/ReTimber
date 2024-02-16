@@ -160,6 +160,7 @@
     <ClCompile Include="Framework\SceneGame.cpp" />
     <ClCompile Include="Framework\TextGo.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="SceneGameMulti.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="UiScore.cpp" />
     <ClCompile Include="UiTimeBar.cpp" />
@@ -183,6 +184,7 @@
     <ClInclude Include="Framework\SceneGame.h" />
     <ClInclude Include="Framework\TextGo.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="SceneGameMulti.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="UiScore.h" />
     <ClInclude Include="UiTimeBar.h" />
