@@ -184,6 +184,10 @@ void SCENE_GAME::UpdateGameOver(float dt)
 {
 	if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
 	{
+		for (auto& i : gameObjects)
+		{
+			i->Reset();
+		}
 		SetStatus(Status::Game);
 	}
 }
@@ -204,7 +208,10 @@ void SCENE_GAME::Draw(sf::RenderWindow& window)
 
 void SCENE_GAME::OnChop()
 {
-	// 점수 갱신
+	uiScore->AddScore(10);
+	timer += 0.2f;
+	if (timer > duration)
+		timer = duration;
 }
 
 void SCENE_GAME::OnPlayerDie()
@@ -241,7 +248,7 @@ void SCENE_GAME::SetStatus(Status newStatus)
 	case Status::GameOver:
 		FRAMEWORK.SetTimeScale(0.f);
 		uiMsg->SetActive(true);
-		uiMsg->SetString("GAME OVER! PRESS ENTER TO RESTART!");
+		uiMsg->SetString("\t\t\t\tSCORE : " + std::to_string(uiScore->GetScore())+ "\nGAME OVER! PRESS ENTER TO RESTART!");
 		break;
 	case Status::Pause:
 		FRAMEWORK.SetTimeScale(0.f);

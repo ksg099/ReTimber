@@ -15,5 +15,7 @@ public:
 	void Reset() override;
 
 	void SetScore(int score);
+	int GetScore() const { return score; }
+	void AddScore(int score);
 };
 
