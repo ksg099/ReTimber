@@ -36,6 +36,7 @@ Sides Tree::Chop(Sides side)
 void Tree::UpdateBranchPos()
 {
 	sf::Vector2f pos = position;
+	pos.y += 80.f;
 	for (Branch* branch : branches)
 	{
 		pos.y -= branchOffsetY;

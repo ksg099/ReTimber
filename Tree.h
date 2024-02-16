@@ -14,7 +14,7 @@ public:
 	virtual ~Tree();
 
 	int branchCount = 6;
-	std::string treeTexureId = "graphics/tree.png";
+	std::string treeTexureId = "graphics/tree2.png";
 	std::string branchTextureId = "graphics/branch.png";
 	float branchOffsetY = 150.f;
 

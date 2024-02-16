@@ -23,7 +23,7 @@ void SCENE_GAME::Init()
 	texResMgr.Load("graphics/background.png");
 	texResMgr.Load("graphics/cloud.png");
 	texResMgr.Load("graphics/bee.png");
-	texResMgr.Load("graphics/tree.png");
+	texResMgr.Load("graphics/tree2.png");
 	texResMgr.Load("graphics/branch.png");
 	texResMgr.Load("graphics/log.png");
 	texResMgr.Load("graphics/player.png");
