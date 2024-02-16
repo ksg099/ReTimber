@@ -8,7 +8,7 @@ class SceneMgr : public Singleton<SceneMgr>
 	friend class Singleton<SceneMgr>;
 
 protected:
-	std::vector<Scene*> scenes;
+	std::map<SceneIds, Scene*> scenes;
 
 	SceneIds startScene = SceneIds::SCENE_GAME;
 	SceneIds currentScene = startScene;
@@ -22,7 +22,7 @@ public:
 
 	void ChangeScene(SceneIds id);
 
-	Scene* GetCurrentScene() { return scenes[(int)currentScene]; }
+	Scene* GetCurrentScene() { return scenes[currentScene]; };
 
 	void Update(float dt);
 	void Draw(sf::RenderWindow& window);

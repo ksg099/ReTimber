@@ -211,7 +211,7 @@ public:
         TouchEnded,             //!< A touch event ended (data in event.touch)
         SensorChanged,          //!< A sensor value changed (data in event.sensor)
 
-        COUNT                   //!< Keep last -- the total number of event types
+        Count                   //!< Keep last -- the total number of event types
     };
 
     ////////////////////////////////////////////////////////////

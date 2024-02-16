@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "SceneMgr.h"
-#include "SceneDev1.h"
-#include "SceneDev2.h"
+
 #include "SceneGame.h"
 
 SceneMgr::~SceneMgr()
@@ -13,25 +12,27 @@ void SceneMgr::Init()
 {
 	Release();
 
-	scenes.push_back(new SCENE_DEV1(SceneIds::SCENE_DEV1));
-	scenes.push_back(new SCENE_DEV2(SceneIds::SCENE_DEV2));
-	scenes.push_back(new SCENE_GAME(SceneIds::SCENE_GAME));
+	//scenes.insert(std::make_pair(SceneIds::SCENE_TITLE, new SCENE_TITLE(SceneIds::SCENE_TITLE)));
+	//scenes.insert(std::make_pair(SceneIds::SCENE_MOD, new SCENE_MOD(SceneIds::SCENE_MOD)));
+	//scenes.insert(std::make_pair(SceneIds::SCENE_CHARACTER, new SCENE_CHARACTER(SceneIds::SCENE_CHARACTER)));
+	scenes.insert(std::make_pair(SceneIds::SCENE_GAME, new SCENE_GAME(SceneIds::SCENE_GAME)));
+	//scenes.insert(std::make_pair(SceneIds::SCENE_GAME_2, new SCENE_GAME_2(SceneIds::SCENE_GAME_2)));
 
 	for (auto scene : scenes)
 	{
-		scene->Init();
+		scene.second->Init();
 	}
 
 	currentScene = startScene;
-	scenes[(int)currentScene]->Enter();
+	scenes[currentScene]->Enter();
 }
 
 void SceneMgr::Release()
 {
 	for (auto scene : scenes)
 	{
-		scene->Release();
-		delete scene;
+		scene.second->Release();
+		delete scene.second;
 	}
 	scenes.clear();
 }
@@ -40,17 +41,17 @@ void SceneMgr::ChangeScene(SceneIds id)
 {
 	// TO-DO: 모든 게임 오브젝트 업데이트 끝난 후에 씬 전환 되도록
 
-	scenes[(int)currentScene]->Exit();
+	scenes[currentScene]->Exit();
 	currentScene = id;
-	scenes[(int)currentScene]->Enter();
+	scenes[currentScene]->Enter();
 }
 
 void SceneMgr::Update(float dt)
 {
-	scenes[(int)currentScene]->Update(dt);
+	scenes[currentScene]->Update(dt);
 }
 
 void SceneMgr::Draw(sf::RenderWindow& window)
 {
-	scenes[(int)currentScene]->Draw(window);
+	scenes[currentScene]->Draw(window);
 }
