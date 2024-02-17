@@ -10,7 +10,7 @@ class SceneMgr : public Singleton<SceneMgr>
 protected:
 	std::map<SceneIds, Scene*> scenes;
 
-	SceneIds startScene = SceneIds::수정해라;
+	SceneIds startScene = SceneIds::SCENE_TITLE;
 	SceneIds currentScene = startScene;
 
 	SceneMgr() = default;

@@ -5,8 +5,8 @@ class Menu : public Scene
 {
 protected:
 
-	TextGo text;
-
+	TextGo* Single;
+	TextGo* Multi;
 
 public:
 

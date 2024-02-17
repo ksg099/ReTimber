@@ -1,11 +1,13 @@
 #pragma once
 #include "Scene.h"
 #include "TextGo.h"
+//배경 텍스처를 출력할 다른 방법이 없나?  스프라이트로 받자
 
 class Title : public Scene
 {
 protected:
-	TextGo* text;
+	TextGo* Titletext;
+	TextGo* textcomt;
 
 public:
 
