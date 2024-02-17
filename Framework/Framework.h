@@ -1,5 +1,6 @@
 #pragma once
 #include "Singleton.h"
+#include "RenderWindowRBR.h"
 
 // 1. 초기화 / 메인루프 / 정리
 // 2. 시간 관련 기능 / 윈도우 정보
@@ -13,7 +14,7 @@ protected:
 	Framework() = default;
 	virtual ~Framework() = default;
 
-	sf::RenderWindow window;
+	RenderWindowRBR window;
 	sf::Vector2i windowSize;
 
 	sf::Clock clock;
@@ -26,7 +27,7 @@ protected:
 	sf::Time deltaTime;
 
 public:
-	sf::RenderWindow& GetWindow() { return window; }	// !!
+	RenderWindowRBR& GetWindow() { return window; }	// !!
 	const sf::Vector2i& GetWindowSize() const { return windowSize; }
 
 	float GetRealTime() const { return realTime.asSeconds(); }
