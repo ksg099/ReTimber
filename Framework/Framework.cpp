@@ -9,6 +9,7 @@ void Framework::Init(int width, int height, const std::string& name)
     windowSize.y = height;
 
     window.create(sf::VideoMode(windowSize.x, windowSize.y), name);
+    window.setView(sf::View({ 0.f, 0.f, (float)width, (float)height }));
     SCENE_MGR.Init();
 }
 
@@ -17,7 +18,7 @@ void Framework::Do()
     while (window.isOpen())
     {
         deltaTime = realDeltaTime = clock.restart();
-        //deltaTime *= timeScale;
+        deltaTime *= timeScale;
 
         time += deltaTime;
         realTime += realDeltaTime;
