@@ -7,6 +7,9 @@
 Player::Player(const std::string& name, SCENE_GAME::GameMode gameMode, SCENE_GAME* sceneGame)
 	: SpriteGo(name) , gameMode(gameMode), sceneGame(sceneGame)
 {
+	sfxChop.setVolume(0.5f);
+	sfxDeath.setVolume(0.5f);
+
 }
 
 void Player::SetSide(Sides s)

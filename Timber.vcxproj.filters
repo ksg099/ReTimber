@@ -75,7 +75,7 @@
     <ClCompile Include="SceneGameMulti.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SceneCharacter.cpp">
+    <ClCompile Include="Framework\RenderWindowRBR.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -146,7 +146,7 @@
     <ClInclude Include="SceneGameMulti.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="SceneCharacter.h">
+    <ClInclude Include="Framework\RenderWindowRBR.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
