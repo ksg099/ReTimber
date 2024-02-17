@@ -7,8 +7,8 @@
 Player::Player(const std::string& name, SCENE_GAME::GameMode gameMode, SCENE_GAME* sceneGame)
 	: SpriteGo(name) , gameMode(gameMode), sceneGame(sceneGame)
 {
-	sfxChop.setVolume(0.5f);
-	sfxDeath.setVolume(0.5f);
+	sfxChop.setVolume(50.f);
+	sfxDeath.setVolume(30.f);
 
 }
 

@@ -10,6 +10,8 @@ protected:
 	sf::View viewPlayer2;
 	sf::View viewAll;
 
+	SCENE_GAME::Status currStatus = SCENE_GAME::Status::Awake;
+
 public:
 	SceneGameMulti(SceneIds id);
 	virtual ~SceneGameMulti() = default;

@@ -47,6 +47,23 @@ void SceneGameMulti::Update(float dt)
 	scenePlayer2->Update(dt);
 	scenePlayer1->Update(dt);
 	Scene::Update(dt);
+
+	switch (currStatus)
+	{
+	case SCENE_GAME::Status::Awake:
+		break;
+	case SCENE_GAME::Status::Game:
+		break;
+	case SCENE_GAME::Status::GameOver:
+		break;
+	case SCENE_GAME::Status::Pause:
+		break;
+	default:
+		break;
+	}
+
+
+
 }
 
 void SceneGameMulti::Draw(sf::RenderWindow& window)

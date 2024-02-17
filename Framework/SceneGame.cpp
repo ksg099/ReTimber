@@ -10,7 +10,7 @@
 #include "Player.h"
 
 SCENE_GAME::SCENE_GAME(SceneIds id, GameMode gameMode)
-	: Scene(id), currGameMode(gameMode)
+	: Scene(id), currGameMode(gameMode), currStatus(Status::Awake)
 {
 }
 
@@ -34,7 +34,7 @@ void SCENE_GAME::Init()
 
 	soundResMgr.Load("sound/out_of_time.wav");
 	sfxTimeOver.setBuffer(RES_MGR_SOUND_BUFFER.Get("sound/out_of_time.wav"));
-	sfxTimeOver.setVolume(0.5f);
+	sfxTimeOver.setVolume(30.f);
 
 	SpriteGo* newSpriteGo = new SpriteGo("BG");
 	newSpriteGo->SetTexture("graphics/background.png");
@@ -73,10 +73,6 @@ void SCENE_GAME::Init()
 	// UI OBJECTS
 	uiScore = new UiScore("Ui Score");
 	uiScore->Set(fontResMgr.Get("fonts/KOMIKAP_.ttf"), "", 40, sf::Color::White);
-	if (currGameMode == GameMode::Single)
-	{
-		uiScore->SetString("PRESS ENTER TO START!");
-	}
 	AddGo(uiScore);
 
 	uiTimeBar = new UiTimeBar("TimeBar");
@@ -123,7 +119,6 @@ void SCENE_GAME::Exit()
 
 void SCENE_GAME::Update(float dt)
 {
-	dt *= timeScale;
 	Scene::Update(dt);
 
 	switch (currStatus)
@@ -145,7 +140,7 @@ void SCENE_GAME::Update(float dt)
 
 void SCENE_GAME::UpdateAwake(float dt)
 {
-	if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
+	if (currGameMode == GameMode::Single && InputMgr::GetKeyDown(sf::Keyboard::Enter))
 	{
 		SetStatus(Status::Game);
 	}
@@ -153,8 +148,8 @@ void SCENE_GAME::UpdateAwake(float dt)
 
 void SCENE_GAME::UpdateGame(float dt)
 {
-
-	if (InputMgr::GetKeyDown(sf::Keyboard::Escape))
+	//1인 모드에서 일시정지
+	if (currGameMode == GameMode::Single && InputMgr::GetKeyDown(sf::Keyboard::Escape))
 	{
 		SetStatus(Status::Pause);
 	}
@@ -188,7 +183,7 @@ void SCENE_GAME::UpdateGame(float dt)
 
 void SCENE_GAME::UpdateGameOver(float dt)
 {
-	if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
+	if (currGameMode == GameMode::Single && InputMgr::GetKeyDown(sf::Keyboard::Enter))
 	{
 		for (auto& i : gameObjects)
 		{
@@ -235,11 +230,16 @@ void SCENE_GAME::SetStatus(Status newStatus)
 	case Status::Awake:
 		timer = duration;
 		uiTimeBar->SetValue(timer / duration);
+
 		if (currGameMode == GameMode::Single)
 		{
 			timeScale = 0.f;
 			uiMsg->SetActive(true);
 			uiMsg->SetString("PRESS ENTER TO START!");
+		}
+		else
+		{
+			timeScale = 0.f;
 		}
 		break;
 	case Status::Game:
@@ -250,12 +250,9 @@ void SCENE_GAME::SetStatus(Status newStatus)
 			player->Reset();
 			tree->Reset();
 		}
-		if (currGameMode == GameMode::Single)
-		{
 			timeScale = 1.f;
 			uiMsg->SetActive(false);
 			uiMsg->SetString("");
-		}
 		break;
 	case Status::GameOver:
 		if (currGameMode == GameMode::Single)
@@ -263,6 +260,12 @@ void SCENE_GAME::SetStatus(Status newStatus)
 			timeScale = 0.f;
 			uiMsg->SetActive(true);
 			uiMsg->SetString("\t\t\t\tSCORE : " + std::to_string(uiScore->GetScore()) + "\nGAME OVER! PRESS ENTER TO RESTART!");
+		}
+		else
+		{
+			uiMsg->SetActive(true);
+			uiMsg->SetString("\t\tSCORE : " + std::to_string(uiScore->GetScore()) + "\n\t\tGAME OVER!\nWAIT FOR ANOTHER PLAYER");
+
 		}
 		break;
 	case Status::Pause:

@@ -41,7 +41,6 @@ protected:
 
 	float duration = 3.f;
 	float timer = 0.f;
-	float timeScale = 1.f;
 
 	sf::Sound sfxTimeOver;
 
