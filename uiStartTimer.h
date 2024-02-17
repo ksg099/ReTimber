@@ -3,11 +3,13 @@
 class uiStartTimer : public TextGo
 {
 protected:
-	float duration = 3.f;
-	float timer = duration;
+	float duration;
+	float timer;
 	int ceilSecond;
 
 public:
+	uiStartTimer(const std::string& name = "");
+	virtual ~uiStartTimer() = default;
 
 	void Init() override;
 	void Update(float dt) override;

@@ -259,12 +259,12 @@ void SCENE_GAME::SetStatus(Status newStatus)
 		{
 			timeScale = 0.f;
 			uiMsg->SetActive(true);
-			uiMsg->SetString("\t\t\t\tSCORE : " + std::to_string(uiScore->GetScore()) + "\nGAME OVER! PRESS ENTER TO RESTART!");
+			uiMsg->SetString("\t\t\t\tSCORE : " + std::to_string(uiScore->GetScore()) + "\n\n\nGAME OVER! PRESS ENTER TO RESTART!");
 		}
 		else
 		{
 			uiMsg->SetActive(true);
-			uiMsg->SetString("\t\tSCORE : " + std::to_string(uiScore->GetScore()) + "\n\t\tGAME OVER!\nWAIT FOR ANOTHER PLAYER");
+			uiMsg->SetString("\t\tSCORE : " + std::to_string(uiScore->GetScore()) + "\n\n\n\t\tGAME OVER!\nWAIT FOR ANOTHER PLAYER");
 
 		}
 		break;
