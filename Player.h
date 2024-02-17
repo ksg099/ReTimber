@@ -22,11 +22,11 @@ protected:
 	bool isChopping = true;
 
 	SCENE_GAME* sceneGame;
-	SCENE_GAME::GameMode gameMode;
+	GameMode gameMode;
 	Tree* tree;
 
 public:
-	Player(const std::string& name, SCENE_GAME::GameMode gameMode, SCENE_GAME* sceneGame);
+	Player(const std::string& name, GameMode gameMode, SCENE_GAME* sceneGame);
 	virtual ~Player() = default;
 
 	std::string texIdPlayer = "graphics/player.png";

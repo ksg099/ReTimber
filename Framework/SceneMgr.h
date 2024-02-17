@@ -10,13 +10,18 @@ class SceneMgr : public Singleton<SceneMgr>
 protected:
 	std::map<SceneIds, Scene*> scenes;
 
-	SceneIds startScene = SceneIds::SCENE_TITLE;
+	SceneIds startScene = SceneIds::수정해라;
 	SceneIds currentScene = startScene;
 
 	SceneMgr() = default;
 	virtual ~SceneMgr();
 
 public:
+
+	GameMode playMode; //Single, Multi
+	std::string player1; //플레이어1 텍스쳐 경로 "graphic/텍스쳐.png"
+	std::string	player2;
+
 	void Init();
 	void Release();
 
