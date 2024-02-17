@@ -15,5 +15,7 @@ public:
 	static bool GetKeyUp(sf::Keyboard::Key key);
 	static bool GetKey(sf::Keyboard::Key key);
 
+	static bool AnyKeyDown();
+
 };
 
