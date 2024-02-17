@@ -28,6 +28,7 @@ void Scene::Enter()
 
 void Scene::Update(float dt)
 {
+	dt *= timeScale;
 	for (auto obj : gameObjects)
 	{
 		if (obj->GetActive())
