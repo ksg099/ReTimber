@@ -7,7 +7,9 @@ protected:
 
 	TextGo text;
 
+
 public:
+
 	Menu(SceneIds id);
 	virtual ~Menu() = default;
 
@@ -18,6 +20,7 @@ public:
 	void Exit() override;
 
 	void Update(float dt) override;
+
 
 };
 

@@ -5,8 +5,8 @@
 class Title : public Scene
 {
 protected:
-	TextGo text;
-	Title* title;
+	TextGo* text;
+
 public:
 
 	Title(SceneIds id);

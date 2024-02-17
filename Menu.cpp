@@ -8,9 +8,12 @@ Menu::Menu(SceneIds id) : Scene(id)
 void Menu::Init()
 {
 	texResMgr.Load("graphics/background.png");
-	text.SetString("Single Play");
-	text.SetString("Multi Play");
+	text.SetPosition({ 1000.f, 1000.f });
+	text.Set(RES_MGR_FONT.Get("fonts/KOMIKAP_.ttf"), "Single Play", 100, sf::Color::Red);
+	text.SetPosition({ 1000.f, 1000.f });
+	text.Set(RES_MGR_FONT.Get("fonts/KOMIKAP_.ttf"), "Multi Play", 100, sf::Color::Red);
 
+	AddGo(&text);
 }
 
 void Menu::Release()
@@ -38,3 +41,4 @@ void Menu::Update(float dt)
 	//	text.SetString("You Choice Multi Play"); 
 	//}
 }
+

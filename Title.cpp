@@ -8,12 +8,16 @@ Title::Title(SceneIds id) : Scene(id)
 void Title::Init()
 {
 	texResMgr.Load("graphics/background.png");
-	text.SetString("PRESS TO START");
+	fontResMgr.Load("fonts/KOMIKAP_.ttf");
 
-	title* = new SpriteGo("BG");
+	text = new TextGo("text");
+	//text->SetTexture(texResMgr.Get("graphics/background.png"));
+	text->SetOrigin(Origins::MC);
+	text->SetPosition({ 1920.f / 2, 500.f });
+	text->Set(RES_MGR_FONT.Get("fonts/KOMIKAP_.ttf"),"PRESS TO START", 75, sf::Color::White);
+	text->Set(RES_MGR_TEXTURE.Get("graphics/background.png"), "PRESS TO START", 75, sf::Color::White);
 
-	AddGo(title)
-
+	AddGo(text);
 }
 
 void Title::Release()
