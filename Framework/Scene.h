@@ -11,6 +11,8 @@ protected:
 	ResourceMgr<sf::Texture>& texResMgr;
 	ResourceMgr<sf::Font>& fontResMgr;
 	ResourceMgr<sf::SoundBuffer>& soundResMgr;
+
+	float timeScale = 1.f;
 public:
 	Scene(SceneIds id);
 
