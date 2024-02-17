@@ -19,13 +19,6 @@ public:
 		Pause,
 	};
 
-	enum class GameMode
-	{
-		Single,
-		Player1,
-		Player2
-	};
-
 protected:
 	UiScore* uiScore = nullptr;
 	TextGo* uiMsg = nullptr;

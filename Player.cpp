@@ -4,7 +4,7 @@
 #include "SceneGameMulti.h"
 #include "Tree.h"
 
-Player::Player(const std::string& name, SCENE_GAME::GameMode gameMode, SCENE_GAME* sceneGame)
+Player::Player(const std::string& name, GameMode gameMode, SCENE_GAME* sceneGame)
 	: SpriteGo(name) , gameMode(gameMode), sceneGame(sceneGame)
 {
 	sfxChop.setVolume(50.f);
@@ -125,11 +125,11 @@ void Player::Reset()
 	isAlive = true;
 	isChopping = false;
 
-	if (gameMode == SCENE_GAME::GameMode::Single)
+	if (gameMode == GameMode::Single)
 	{
 		sceneGame = dynamic_cast<SCENE_GAME*>(SCENE_MGR.GetCurrentScene());
 	}
-	else if (gameMode == SCENE_GAME::GameMode::Player1)
+	else if (gameMode == GameMode::Player1)
 	{
 		sceneGame = dynamic_cast<SCENE_GAME*>(dynamic_cast<SceneGameMulti*>(SCENE_MGR.GetCurrentScene())->GetScenePlayer1());
 	}
@@ -196,10 +196,10 @@ void Player::Draw(sf::RenderWindow& window)
 
 sf::Keyboard::Key Player::KeyLeft() const
 {
-	return gameMode == SCENE_GAME::GameMode::Player1 ? sf::Keyboard::A : sf::Keyboard::Left;
+	return gameMode == GameMode::Player1 ? sf::Keyboard::A : sf::Keyboard::Left;
 }
 
 sf::Keyboard::Key Player::KeyRight() const
 {
-	return gameMode == SCENE_GAME::GameMode::Player1 ? sf::Keyboard::D : sf::Keyboard::Right;
+	return gameMode == GameMode::Player1 ? sf::Keyboard::D : sf::Keyboard::Right;
 }
