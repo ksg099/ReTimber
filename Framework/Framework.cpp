@@ -3,6 +3,10 @@
 
 void Framework::Init(int width, int height, const std::string& name)
 {
+    bgm.openFromFile("sound/bgm.wav");
+    bgm.setLoop(true);
+    bgm.setVolume(25);
+    bgm.play();
     srand(std::time(NULL));
 
     windowSize.x = width;

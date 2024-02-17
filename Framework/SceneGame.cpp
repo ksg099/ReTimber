@@ -103,6 +103,15 @@ void SCENE_GAME::Release()
 	uiMsg = nullptr;
 }
 
+void SCENE_GAME::Reset()
+{
+	for (auto& i : gameObjects)
+	{
+		i->Reset();
+	}
+	SetStatus(Status::Game);
+}
+
 void SCENE_GAME::Enter()
 {
 	player->SetPosition(tree->GetPosition());
@@ -185,11 +194,7 @@ void SCENE_GAME::UpdateGameOver(float dt)
 {
 	if (currGameMode == GameMode::Single && InputMgr::GetKeyDown(sf::Keyboard::Enter))
 	{
-		for (auto& i : gameObjects)
-		{
-			i->Reset();
-		}
-		SetStatus(Status::Game);
+		Reset();
 	}
 }
 

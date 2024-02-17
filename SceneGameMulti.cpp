@@ -52,6 +52,16 @@ void SceneGameMulti::Release()
 	Scene::Release();
 }
 
+void SceneGameMulti::Reset()
+{
+	scenePlayer1->Reset();
+	scenePlayer2->Reset();
+	for (auto& i : gameObjects)
+	{
+		i->Reset();
+	}
+}
+
 void SceneGameMulti::Enter()
 {
 	Scene::Enter();
@@ -76,6 +86,7 @@ void SceneGameMulti::Update(float dt)
 	case SCENE_GAME::Status::Awake:
 		if (!startTimer->GetActive())
 		{
+			Reset();
 			scenePlayer1->SetStatus(SCENE_GAME::Status::Game);
 			scenePlayer2->SetStatus(SCENE_GAME::Status::Game);
 			currStatus = SCENE_GAME::Status::Game;

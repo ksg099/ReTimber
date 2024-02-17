@@ -58,14 +58,14 @@ void Menu::Update(float dt)
 	{
 
 		SCENE_MGR.playMode = GameMode::Single;
-		SCENE_MGR.ChangeScene(SceneIds::SCENE_GAME);
+		SCENE_MGR.ChangeScene(SceneIds::SCENE_CHARACTER);
 	}
 
 	//2번 눌렀을때 싱글모드로 설정해서 다음 씬으로 넘어간다.
 	if (InputMgr::GetKeyDown(sf::Keyboard::Num2))
 	{
 		SCENE_MGR.playMode = GameMode::Multi;
-		SCENE_MGR.ChangeScene(SceneIds::SCENE_GAME_2);
+		SCENE_MGR.ChangeScene(SceneIds::SCENE_CHARACTER);
 	}
 }
 

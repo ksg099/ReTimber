@@ -10,7 +10,7 @@ class SceneMgr : public Singleton<SceneMgr>
 protected:
 	std::map<SceneIds, Scene*> scenes;
 
-	SceneIds startScene = SceneIds::SCENE_CHARACTER;
+	SceneIds startScene = SceneIds::SCENE_TITLE;
 	SceneIds currentScene = startScene;
 
 	SceneMgr() = default;
@@ -18,7 +18,7 @@ protected:
 
 public:
 
-	GameMode playMode = GameMode::Multi; //Single, Multi
+	GameMode playMode = GameMode::Single; //Single, Multi
 	std::string player1; //플레이어1 텍스쳐 경로 "graphic/텍스쳐.png"
 	std::string	player2;
 

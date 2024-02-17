@@ -32,4 +32,5 @@ void RenderWindowRBR::onResize()
 	preSize = getSize();
 
 	isResizing = false;
+	RenderWindow::onResize();
 }
