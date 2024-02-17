@@ -17,6 +17,11 @@ protected:
 	virtual ~SceneMgr();
 
 public:
+
+	GameMode playMode = GameMode::Multi; //Single, Multi
+	std::string player1; //플레이어1 텍스쳐 경로 "graphic/텍스쳐.png"
+	std::string	player2;
+
 	void Init();
 	void Release();
 

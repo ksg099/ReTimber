@@ -9,6 +9,10 @@ protected:
 	sf::Text num1;
 	sf::Text num2;
 
+	
+	bool player1choice = false;
+	bool player2choice = false;
+
 
 
 public:

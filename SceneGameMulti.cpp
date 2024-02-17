@@ -3,8 +3,8 @@
 
 SceneGameMulti::SceneGameMulti(SceneIds id)
 	:Scene(id),
-	scenePlayer1(new SCENE_GAME(SceneIds::SCENE_GAME, SCENE_GAME::GameMode::Player1)),
-	scenePlayer2(new SCENE_GAME(SceneIds::SCENE_GAME, SCENE_GAME::GameMode::Player2))
+	scenePlayer1(new SCENE_GAME(SceneIds::SCENE_GAME, GameMode::Player1)),
+	scenePlayer2(new SCENE_GAME(SceneIds::SCENE_GAME, GameMode::Player2))
 {
 	float windowSizeX = Framework::Instance().GetWindowSize().x;
 	float windowSizeY =	Framework::Instance().GetWindowSize().y;
