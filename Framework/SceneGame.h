@@ -34,7 +34,6 @@ protected:
 
 	float duration = 3.f;
 	float timer = 0.f;
-	float timeScale = 1.f;
 
 	sf::Sound sfxTimeOver;
 
@@ -50,6 +49,7 @@ public:
 
 	void Init() override;
 	void Release() override;
+	void Reset();
 
 	void Enter() override;
 	void Exit() override;

@@ -1,7 +1,11 @@
 #include "pch.h"
 #include "SceneMgr.h"
 
+
+#include "Title.h"
+#include "Menu.h"
 #include "SceneGame.h"
+#include "SceneCharacter.h"
 #include "SceneGameMulti.h"
 
 SceneMgr::~SceneMgr()
@@ -13,11 +17,11 @@ void SceneMgr::Init()
 {
 	Release();
 
-	//scenes.insert(std::make_pair(SceneIds::SCENE_TITLE, new SceneTitle(SceneIds::SCENE_TITLE)));
-	//scenes.insert(std::make_pair(SceneIds::SCENE_MOD, new SceneMod(SceneIds::SCENE_MOD)));
-	//scenes.insert(std::make_pair(SceneIds::SCENE_CHARACTER, new SceneCharacter(SceneIds::SCENE_CHARACTER)));
-	//scenes.insert(std::make_pair(SceneIds::SCENE_GAME, new SCENE_GAME(SceneIds::SCENE_GAME, GameMode::Single)));
-	//scenes.insert(std::make_pair(SceneIds::SCENE_GAME_2, new SceneGameMulti(SceneIds::SCENE_GAME_2)));
+	scenes.insert(std::make_pair(SceneIds::SCENE_TITLE, new Title(SceneIds::SCENE_TITLE)));
+	scenes.insert(std::make_pair(SceneIds::SCENE_MOD, new Menu(SceneIds::SCENE_MOD)));
+	scenes.insert(std::make_pair(SceneIds::SCENE_CHARACTER, new SceneCharacter(SceneIds::SCENE_CHARACTER)));
+	scenes.insert(std::make_pair(SceneIds::SCENE_GAME, new SCENE_GAME(SceneIds::SCENE_GAME, GameMode::Single)));
+	scenes.insert(std::make_pair(SceneIds::SCENE_GAME_2, new SceneGameMulti(SceneIds::SCENE_GAME_2)));
 
 	for (auto& scene : scenes)
 	{

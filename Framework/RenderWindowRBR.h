@@ -15,8 +15,5 @@ protected:
 	void onCreate() override;
 	void onResize() override;
 
-
-
-	
 };
 

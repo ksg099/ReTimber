@@ -34,6 +34,8 @@ public:
 	virtual void RemoveGo(GameObject* obj);
 
 	inline SceneIds GetId() const { return id; }
+	inline float GetTimeScale() const { return timeScale; }
+	inline void SetTimeScale(float timeScale) { this->timeScale = timeScale; }
 
 	Scene(const Scene&) = delete;
 	Scene(Scene&&) = delete;

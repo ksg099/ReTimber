@@ -7,9 +7,8 @@
 Player::Player(const std::string& name, GameMode gameMode, SCENE_GAME* sceneGame)
 	: SpriteGo(name) , gameMode(gameMode), sceneGame(sceneGame)
 {
-	sfxChop.setVolume(0.5f);
-	sfxDeath.setVolume(0.5f);
-
+	sfxChop.setVolume(50.f);
+	sfxDeath.setVolume(30.f);
 }
 
 void Player::SetSide(Sides s)
@@ -119,7 +118,14 @@ void Player::Release()
 void Player::Reset()
 {
 	SpriteGo::Reset();
-
+	if (gameMode == GameMode::Player2)
+	{
+		texIdPlayer = SCENE_MGR.player2;
+	}
+	else
+	{
+		texIdPlayer = SCENE_MGR.player1;
+	}
 	SetTexture(texIdPlayer);
 	SetOrigin(Origins::BC);
 	isAlive = true;

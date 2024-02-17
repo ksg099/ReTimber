@@ -78,6 +78,20 @@
     <ClCompile Include="Framework\RenderWindowRBR.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <ClCompile Include="uiStartTimer.cpp">
+=======
+    <ClCompile Include="SceneCharacter.cpp">
+>>>>>>> origin/feature/SCENE_CHARACTER
+=======
+    <ClCompile Include="Title.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+>>>>>>> origin/feature/Title
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\Defines.h">
@@ -147,6 +161,20 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Framework\RenderWindowRBR.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <ClInclude Include="uiStartTimer.h">
+=======
+    <ClInclude Include="SceneCharacter.h">
+>>>>>>> origin/feature/SCENE_CHARACTER
+=======
+    <ClInclude Include="Title.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+>>>>>>> origin/feature/Title
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

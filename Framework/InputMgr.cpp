@@ -58,3 +58,10 @@ bool InputMgr::GetKey(sf::Keyboard::Key key)
 {
     return std::find(ingList.begin(), ingList.end(), key) != ingList.end();
 }
+
+//아무키나 눌렀을때
+bool InputMgr::AnyKeyDown()
+{
+    //눌렀을때가 없을경우의 반대!를 해준다.
+    return !downList.empty();
+}

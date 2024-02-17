@@ -21,6 +21,7 @@ public:
 	void SetScale(const sf::Vector2f& scale) override;
 	void SetFlipX(bool filp) override;
 	void SetFlipY(bool filp) override;
+	inline sf::FloatRect GetRect() { return text.getLocalBounds(); }
 
 	void Draw(sf::RenderWindow& window) override;
 };

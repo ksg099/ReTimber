@@ -26,6 +26,8 @@ protected:
 	sf::Time realDeltaTime;
 	sf::Time deltaTime;
 
+	sf::Music bgm;
+
 public:
 	RenderWindowRBR& GetWindow() { return window; }	// !!
 	const sf::Vector2i& GetWindowSize() const { return windowSize; }
