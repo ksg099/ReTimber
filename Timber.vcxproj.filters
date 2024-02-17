@@ -78,7 +78,11 @@
     <ClCompile Include="Framework\RenderWindowRBR.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="uiStartTimer.cpp">
+=======
+    <ClCompile Include="SceneCharacter.cpp">
+>>>>>>> origin/feature/SCENE_CHARACTER
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -152,7 +156,11 @@
     <ClInclude Include="Framework\RenderWindowRBR.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="uiStartTimer.h">
+=======
+    <ClInclude Include="SceneCharacter.h">
+>>>>>>> origin/feature/SCENE_CHARACTER
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
