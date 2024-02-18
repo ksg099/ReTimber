@@ -5,6 +5,7 @@
 UiTimeBar::UiTimeBar(const std::string& name)
 	: GameObject(name)
 {
+	drawLayer = 5;
 }
 
 void UiTimeBar::Reset()

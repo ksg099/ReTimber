@@ -87,6 +87,7 @@ void SCENE_GAME::Init()
 		"", 75, sf::Color::White);
 	uiMsg->SetPosition({ 1920.f / 2, 1080.f / 2 });
 	uiMsg->SetOrigin(Origins::MC);
+	uiMsg->SetDrawLayer(5);
 	AddGo(uiMsg);
 
 	for (GameObject* obj : gameObjects)
@@ -109,7 +110,13 @@ void SCENE_GAME::Reset()
 	{
 		i->Reset();
 	}
-	SetStatus(Status::Game);
+	uiMsg->SetString("");
+	while (!useEffectList.empty())
+	{
+		useEffectList.front()->SetActive(false);
+		unuseEffectList.push_back(useEffectList.front());
+		useEffectList.pop_front();
+	}
 }
 
 void SCENE_GAME::Enter()
@@ -117,6 +124,7 @@ void SCENE_GAME::Enter()
 	player->SetPosition(tree->GetPosition());
 
 	Scene::Enter();
+	Reset();
 
 	SetStatus(Status::Awake);
 }
@@ -152,6 +160,10 @@ void SCENE_GAME::UpdateAwake(float dt)
 	if (currGameMode == GameMode::Single && InputMgr::GetKeyDown(sf::Keyboard::Enter))
 	{
 		SetStatus(Status::Game);
+	}
+	if (currGameMode == GameMode::Single && InputMgr::GetKeyDown(sf::Keyboard::F5))
+	{
+		SCENE_MGR.ChangeScene(SceneIds::SCENE_TITLE);
 	}
 }
 
@@ -195,6 +207,11 @@ void SCENE_GAME::UpdateGameOver(float dt)
 	if (currGameMode == GameMode::Single && InputMgr::GetKeyDown(sf::Keyboard::Enter))
 	{
 		Reset();
+		SetStatus(Status::Game);
+	}
+	if (currGameMode == GameMode::Single && InputMgr::GetKeyDown(sf::Keyboard::F5))
+	{
+		SCENE_MGR.ChangeScene(SceneIds::SCENE_TITLE);
 	}
 }
 
@@ -203,6 +220,10 @@ void SCENE_GAME::UpdatePause(float dt)
 	if (InputMgr::GetKeyDown(sf::Keyboard::Escape))
 	{
 		SetStatus(Status::Game);
+	}
+	if (currGameMode == GameMode::Single && InputMgr::GetKeyDown(sf::Keyboard::F5))
+	{
+		SCENE_MGR.ChangeScene(SceneIds::SCENE_TITLE);
 	}
 }
 
@@ -252,8 +273,6 @@ void SCENE_GAME::SetStatus(Status newStatus)
 		{
 			timer = duration;
 			uiTimeBar->SetValue(timer / duration);
-			player->Reset();
-			tree->Reset();
 		}
 			timeScale = 1.f;
 			uiMsg->SetActive(false);

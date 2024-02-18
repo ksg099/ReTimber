@@ -42,6 +42,8 @@ void SceneCharacter::Release()
 
 void SceneCharacter::Enter()
 {
+	player1choice = false;
+	player2choice = false;
 }
 
 void SceneCharacter::Exit()
@@ -51,7 +53,10 @@ void SceneCharacter::Exit()
 
 void SceneCharacter::Update(float dt)
 {
-
+	if (InputMgr::GetKeyDown(sf::Keyboard::F5))
+	{
+		SCENE_MGR.ChangeScene(SceneIds::SCENE_TITLE);
+	}
 
 	if (SCENE_MGR.playMode == GameMode::Single)
 	{

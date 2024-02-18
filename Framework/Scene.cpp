@@ -78,7 +78,21 @@ GameObject* Scene::AddGo(GameObject* obj)
 {
 	if (std::find(gameObjects.begin(), gameObjects.end(), obj) == gameObjects.end())
 	{
-		gameObjects.push_back(obj);
+		if (gameObjects.empty())
+		{
+			gameObjects.push_back(obj);
+		}
+		else
+		{
+			auto it = gameObjects.begin();
+			while (it != gameObjects.end())
+			{
+				if ((*it)->GetDrawLayer() > obj->GetDrawLayer())
+					break;
+				it++;
+			}
+			gameObjects.insert(it, obj);
+		}
 		return obj;
 	}
 	return nullptr;

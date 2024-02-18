@@ -13,6 +13,9 @@ protected:
 	SceneIds startScene = SceneIds::SCENE_TITLE;
 	SceneIds currentScene = startScene;
 
+	bool doSceneChange = false; //¾À ÀüÈ¯ ¿¹¾à
+	SceneIds nextScene = startScene; //º¯°æµÉ ¾À
+
 	SceneMgr() = default;
 	virtual ~SceneMgr();
 

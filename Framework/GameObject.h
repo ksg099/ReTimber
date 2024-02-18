@@ -12,6 +12,7 @@ protected:
 
 	bool isFlipX = false;
 	bool isFlipY = false;
+	int drawLayer = 0;
 
 public:
 	GameObject(const std::string& name = "");
@@ -52,5 +53,8 @@ public:
 	std::string name = "";
 	int sortLayer = 0;
 	int sortOrder = 0;
+
+	inline void SetDrawLayer(int layer) { drawLayer = layer; };
+	int GetDrawLayer() const { return drawLayer; };
 };
 

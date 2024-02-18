@@ -18,7 +18,7 @@ void SceneMgr::Init()
 	Release();
 
 	scenes.insert(std::make_pair(SceneIds::SCENE_TITLE, new Title(SceneIds::SCENE_TITLE)));
-	scenes.insert(std::make_pair(SceneIds::SCENE_MOD, new Menu(SceneIds::SCENE_MOD)));
+	scenes.insert(std::make_pair(SceneIds::SCENE_MENU, new Menu(SceneIds::SCENE_MENU)));
 	scenes.insert(std::make_pair(SceneIds::SCENE_CHARACTER, new SceneCharacter(SceneIds::SCENE_CHARACTER)));
 	scenes.insert(std::make_pair(SceneIds::SCENE_GAME, new SCENE_GAME(SceneIds::SCENE_GAME, GameMode::Single)));
 	scenes.insert(std::make_pair(SceneIds::SCENE_GAME_2, new SceneGameMulti(SceneIds::SCENE_GAME_2)));
@@ -44,16 +44,21 @@ void SceneMgr::Release()
 
 void SceneMgr::ChangeScene(SceneIds id)
 {
-	// TO-DO: 모든 게임 오브젝트 업데이트 끝난 후에 씬 전환 되도록
-
-	scenes[currentScene]->Exit();
-	currentScene = id;
-	scenes[currentScene]->Enter();
+	doSceneChange = true;
+	nextScene = id;
 }
 
 void SceneMgr::Update(float dt)
 {
 	scenes[currentScene]->Update(dt);
+
+	if (doSceneChange)
+	{
+		doSceneChange = false;
+		scenes[currentScene]->Exit();
+		currentScene = nextScene;
+		scenes[currentScene]->Enter();
+	}
 }
 
 void SceneMgr::Draw(sf::RenderWindow& window)

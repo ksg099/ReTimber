@@ -7,6 +7,7 @@ uiStartTimer::uiStartTimer(const std::string& name)
 	duration = 3.f;
 	timer = duration;
 	ceilSecond = ceil(timer);
+	drawLayer = 5;
 }
 
 void uiStartTimer::Init()

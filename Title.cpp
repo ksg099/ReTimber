@@ -71,6 +71,6 @@ void Title::Update(float dt)
 	//아무키나 눌렀을 경우 다음 메뉴 선택씬으로 넘어간다.
 	if (InputMgr::AnyKeyDown())
 	{
-		SCENE_MGR.ChangeScene(SceneIds::SCENE_MOD);
+		SCENE_MGR.ChangeScene(SceneIds::SCENE_MENU);
 	}
 }

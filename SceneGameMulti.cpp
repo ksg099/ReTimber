@@ -54,12 +54,16 @@ void SceneGameMulti::Release()
 
 void SceneGameMulti::Reset()
 {
-	scenePlayer1->Reset();
-	scenePlayer2->Reset();
 	for (auto& i : gameObjects)
 	{
 		i->Reset();
 	}
+	uiWinner->SetActive(false);
+	startTimer->Reset();
+	startTimer->SetActive(true);
+	scenePlayer1->Reset();
+	scenePlayer2->Reset();
+	currStatus = SCENE_GAME::Status::Awake;
 }
 
 void SceneGameMulti::Enter()
@@ -67,6 +71,7 @@ void SceneGameMulti::Enter()
 	Scene::Enter();
 	scenePlayer1->Enter();
 	scenePlayer2->Enter();
+	Reset();
 }
 
 void SceneGameMulti::Exit()
@@ -86,7 +91,6 @@ void SceneGameMulti::Update(float dt)
 	case SCENE_GAME::Status::Awake:
 		if (!startTimer->GetActive())
 		{
-			Reset();
 			scenePlayer1->SetStatus(SCENE_GAME::Status::Game);
 			scenePlayer2->SetStatus(SCENE_GAME::Status::Game);
 			currStatus = SCENE_GAME::Status::Game;
@@ -125,13 +129,18 @@ void SceneGameMulti::Update(float dt)
 		scenePlayer2->SetTimeScale(0.f);
 		if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
 		{
-			currStatus = SCENE_GAME::Status::Awake;
-			uiWinner->SetActive(false);
-			startTimer->SetActive(true);
-			startTimer->Reset();
+			Reset();
+		}
+		if (InputMgr::GetKeyDown(sf::Keyboard::F5))
+		{
+			SCENE_MGR.ChangeScene(SceneIds::SCENE_TITLE);
 		}
 		break;
 	case SCENE_GAME::Status::Pause:
+		if (InputMgr::GetKeyDown(sf::Keyboard::F5))
+		{
+			SCENE_MGR.ChangeScene(SceneIds::SCENE_TITLE);
+		}
 		break;
 	default:
 		break;

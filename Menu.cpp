@@ -67,5 +67,10 @@ void Menu::Update(float dt)
 		SCENE_MGR.playMode = GameMode::Multi;
 		SCENE_MGR.ChangeScene(SceneIds::SCENE_CHARACTER);
 	}
+
+	if (InputMgr::GetKeyDown(sf::Keyboard::F5))
+	{
+		SCENE_MGR.ChangeScene(SceneIds::SCENE_TITLE);
+	}
 }
 

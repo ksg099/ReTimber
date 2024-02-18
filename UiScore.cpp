@@ -4,6 +4,7 @@
 UiScore::UiScore(const std::string& name)
 	: TextGo(name)
 {
+	drawLayer = 5;
 }
 
 void UiScore::Reset()
