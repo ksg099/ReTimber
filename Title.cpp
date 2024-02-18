@@ -76,6 +76,6 @@ void Title::Update(float dt)
 
 	//if (InputMgr::GetKeyDown(sf::Keyboard::Escape)
 	//{
-	//	std::exit(0);
+	// 
 	//}
 }
