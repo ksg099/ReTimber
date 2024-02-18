@@ -114,6 +114,7 @@ void SCENE_GAME::Reset()
 	while (!useEffectList.empty())
 	{
 		useEffectList.front()->SetActive(false);
+		RemoveGo(useEffectList.front());
 		unuseEffectList.push_back(useEffectList.front());
 		useEffectList.pop_front();
 	}
