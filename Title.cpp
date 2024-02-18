@@ -73,4 +73,9 @@ void Title::Update(float dt)
 	{
 		SCENE_MGR.ChangeScene(SceneIds::SCENE_MOD);
 	}
+
+	//if (InputMgr::GetKeyDown(sf::Keyboard::Escape)
+	//{
+	//	std::exit(0);
+	//}
 }
