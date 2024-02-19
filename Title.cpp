@@ -73,4 +73,9 @@ void Title::Update(float dt)
 	{
 		SCENE_MGR.ChangeScene(SceneIds::SCENE_MENU);
 	}
+
+	//if (InputMgr::GetKeyDown(sf::Keyboard::Escape)
+	//{
+	// 
+	//}
 }

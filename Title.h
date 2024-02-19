@@ -8,6 +8,7 @@ class Title : public Scene
 protected:
 	TextGo* Titletext;
 	TextGo* textcomt;
+	//sf::Sprite player2; 차이 위랑 머가 더나은지
 
 public:
 

@@ -88,6 +88,11 @@ void TextGo::SetFlipY(bool filp)
 	SetScale(scale);
 }
 
+void TextGo::SetTextColor(const sf::Color& color)
+{
+
+}
+
 void TextGo::Draw(sf::RenderWindow& window)
 {
 	window.draw(text);

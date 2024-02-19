@@ -72,6 +72,10 @@ void SceneCharacter::Update(float dt)
 			SCENE_MGR.ChangeScene(SceneIds::SCENE_GAME);
 
 		}
+		if (InputMgr::GetKeyDown(sf::Keyboard::Escape))
+		{
+			SCENE_MGR.ChangeScene(SceneIds::SCENE_TITLE);
+		}
 	}
 	if (SCENE_MGR.playMode == GameMode::Multi)
 	{
@@ -100,6 +104,11 @@ void SceneCharacter::Update(float dt)
 		if (player1choice && player2choice)
 		{
 			SCENE_MGR.ChangeScene(SceneIds::SCENE_GAME_2);
+		}
+
+		if (InputMgr::GetKeyDown(sf::Keyboard::Escape))
+		{
+			SCENE_MGR.ChangeScene(SceneIds::SCENE_MOD);
 		}
 	}
 

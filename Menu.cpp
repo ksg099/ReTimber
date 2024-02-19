@@ -50,22 +50,51 @@ void Menu::Exit()
 {
 }
 
-void Menu::Update(float dt)
+void Menu::Update(float dt) //초기상태시
 {
+    // 위쪽 화살표 키를 눌렀을 때
+    if (InputMgr::GetKeyDown(sf::Keyboard::Up))
+    {
+        // 플레이어 모드를 Single로 설정
+        SCENE_MGR.playMode = GameMode::Single;
+    }
 
-	//1번 눌렀을때 싱글모드로 설정해서 다음 씬으로 넘어간다.
-	if (InputMgr::GetKeyDown(sf::Keyboard::Num1))
+    // 아래쪽 화살표 키를 눌렀을 때
+    if (InputMgr::GetKeyDown(sf::Keyboard::Down))
+    {
+        // 플레이어 모드를 Multi로 설정
+        SCENE_MGR.playMode = GameMode::Multi;
+    }
+
+    // Enter 키를 눌렀을 때 다음 씬으로 넘어감
+    if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
+    {
+        SCENE_MGR.ChangeScene(SceneIds::SCENE_CHARACTER);
+    }
+
+    // Escape 키를 눌렀을 때 타이틀 씬으로 돌아감
+    if (InputMgr::GetKeyDown(sf::Keyboard::Escape))
+    {
+        SCENE_MGR.ChangeScene(SceneIds::SCENE_TITLE);
+    }
+
+    // 플레이어 모드에 따라 텍스트 색상 변경
+    if (SCENE_MGR.playMode == GameMode::Single)
+    {
+        Single->Set(RES_MGR_FONT.Get("fonts/KOMIKAP_.ttf"), "Multi Play to PRESS 1", 80, sf::Color::White);
+        Multi->Set(RES_MGR_FONT.Get("fonts/KOMIKAP_.ttf"), "Multi Play to PRESS 2", 75, sf::Color::Red);
+
+    }
+    else if (SCENE_MGR.playMode == GameMode::Multi)
+    {
+        Single->Set(RES_MGR_FONT.Get("fonts/KOMIKAP_.ttf"), "Multi Play to PRESS 1", 75, sf::Color::Red);;
+        Multi->Set(RES_MGR_FONT.Get("fonts/KOMIKAP_.ttf"), "Multi Play to PRESS 2", 80, sf::Color::White);
+    }
+
+	//Esc누르면 타이틀 화면으로 이동
+	if (InputMgr::GetKeyDown(sf::Keyboard::Escape))
 	{
-
-		SCENE_MGR.playMode = GameMode::Single;
-		SCENE_MGR.ChangeScene(SceneIds::SCENE_CHARACTER);
-	}
-
-	//2번 눌렀을때 싱글모드로 설정해서 다음 씬으로 넘어간다.
-	if (InputMgr::GetKeyDown(sf::Keyboard::Num2))
-	{
-		SCENE_MGR.playMode = GameMode::Multi;
-		SCENE_MGR.ChangeScene(SceneIds::SCENE_CHARACTER);
+		SCENE_MGR.ChangeScene(SceneIds::SCENE_TITLE);
 	}
 
 	if (InputMgr::GetKeyDown(sf::Keyboard::F5))
