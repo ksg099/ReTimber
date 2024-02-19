@@ -108,7 +108,7 @@ void SceneCharacter::Update(float dt)
 
 		if (InputMgr::GetKeyDown(sf::Keyboard::Escape))
 		{
-			SCENE_MGR.ChangeScene(SceneIds::SCENE_MOD);
+			SCENE_MGR.ChangeScene(SceneIds::SCENE_MENU);
 		}
 	}
 
